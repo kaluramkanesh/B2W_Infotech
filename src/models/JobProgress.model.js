@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const schema = new mongoose.Schema({
-    fileName: String,     // ⭐ ADD THIS LINE
+    fileName: String,
     totalRows: Number,
     processedRows: Number,
     failedRows: Number,

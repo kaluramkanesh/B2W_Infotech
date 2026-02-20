@@ -21,13 +21,13 @@ const BATCH_SIZE = 1000;
         console.log("Worker started");
         console.log("Processing file:", workerData.filePath);
 
-        // ✅ Ensure directory exists
+
         const dir = path.dirname(workerData.filePath);
         if (!fs.existsSync(dir)) {
             fs.mkdirSync(dir, { recursive: true });
         }
 
-        // ✅ Connect DB
+
         await connectDB();
         console.log("MongoDB Connected inside worker");
 
@@ -36,7 +36,7 @@ const BATCH_SIZE = 1000;
         let failed = 0;
         let batchNumber = 0;
 
-        // ✅ Stream Excel
+
         await streamExcel(workerData.filePath, async (row) => {
 
             try {
@@ -54,7 +54,6 @@ const BATCH_SIZE = 1000;
                 });
             }
 
-            // ✅ Insert batch when full
             if (batch.length >= BATCH_SIZE) {
 
                 batchNumber++;
@@ -80,7 +79,6 @@ const BATCH_SIZE = 1000;
 
         });
 
-        // ✅ Insert remaining rows (VERY IMPORTANT)
         if (batch.length > 0) {
 
             batchNumber++;

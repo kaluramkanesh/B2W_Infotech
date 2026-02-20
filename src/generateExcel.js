@@ -44,7 +44,6 @@ async function generateExcel() {
 
         let name, email, phone;
 
-        // ⭐ Partial failure every 100 rows
         if (i % 100 === 0) {
 
             // intentionally invalid data
